@@ -39,9 +39,9 @@ const APP = {
 
 		const currentYear = new Date().getFullYear();
 
-		const newYearTime = new Date(`January 01 ${currentYear + 1} 00:00:00`);
+		const newYearTime = new Date(`February 01 ${currentYear} 00:00:00`);
 
-		year.innerText = currentYear + 1;
+		year.innerText = currentYear;
 
 		function updateCountdown() {
 			const currentTime = new Date();
