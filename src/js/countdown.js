@@ -1,7 +1,9 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-const APP = {
+const SPINNER_SRC = `./src/img/spinner.gif`;
+
+const COUNT_DOWN = {
 	ELE: $('#app'),
 	TIME_ELE: ['days', 'hours', 'minutes', 'seconds'],
 
@@ -21,7 +23,7 @@ const APP = {
 			</div>
 			
 			<img
-				src="./src/img/spinner.gif"
+				src="${SPINNER_SRC}"
 				alt="Loading..."
 				id="loading"
 				class="loading"
@@ -37,11 +39,18 @@ const APP = {
 		const year = document.getElementById('year');
 		const loading = document.getElementById('loading');
 
-		const currentYear = new Date().getFullYear();
+		let updateCD;
 
-		const newYearTime = new Date(`February 01 ${currentYear} 00:00:00`);
+		const currentYear = new Date().getFullYear();
+		const newYearTime = new Date(`February 1 ${currentYear} 00:00:00`);
 
 		year.innerText = currentYear;
+
+		function lastCountDown() {
+			[days, hours, minutes].forEach(
+				(item) => (item.style.display = 'none')
+			);
+		}
 
 		function updateCountdown() {
 			const currentTime = new Date();
@@ -55,6 +64,17 @@ const APP = {
 			days.innerHTML = d;
 			hours.innerHTML = h < 10 ? '0' + h : h;
 			minutes.innerHTML = m < 10 ? '0' + m : m;
+
+			if (!d && !h && !m) {
+				lastCountDown(days, hours, minutes);
+				if (!s) {
+					clearInterval(updateCD);
+					setTimeout(() => {
+						window.location.href = './firework.html';
+					}, 1000);
+				}
+			}
+
 			seconds.innerHTML = s < 10 ? '0' + s : s;
 		}
 
@@ -63,7 +83,7 @@ const APP = {
 			countdown.style.display = 'flex';
 		}, 1000);
 
-		setInterval(updateCountdown, 1000);
+		updateCD = setInterval(updateCountdown, 1000);
 	},
 
 	run() {
@@ -72,4 +92,4 @@ const APP = {
 	},
 };
 
-APP.run();
+COUNT_DOWN.run();
