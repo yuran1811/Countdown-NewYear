@@ -58,7 +58,7 @@ links.forEach((item) => {
 // <-- Get Lucky Card Handle
 const cardUI = $('.card');
 const getButton = $('.get-card');
-const circle = getButton.querySelector('.progress-circle');
+const circle = getButton?.querySelector('.progress-circle');
 // const circleLth = circle.getTotalLength();
 const circleLth = 570;
 
@@ -74,19 +74,45 @@ const removeHold = () => {
 	cdCnt = 0;
 };
 
-getButton.onmousedown = () => {
-	$('.lucky-card').classList.add('hold');
-	interval = setInterval(() => {
-		circle.style.strokeDashoffset =
-			circleLth - (cdCnt / cdTime) * circleLth;
-		if (cdCnt === cdTime) {
-			clearInterval(interval);
-			setTimeout(() => $('.lucky-card').classList.add('getCard'), 250);
-			setTimeout(() => cardUI.classList.add('active'), 500);
-		}
-		cdCnt += cdIntervalTime / (cdTime * 100);
-	}, cdIntervalTime);
+const cardHandle = () => {
+	clearInterval(interval);
+	setTimeout(() => $('.lucky-card').classList.add('getCard'), 250);
+	setTimeout(() => cardUI.classList.add('active'), 500);
+
+	const MONEY_LIST = [5, 20, 100, 200, 500];
+	const NOTICE_LIST = [
+		"Don't be sad! It's not really bad.",
+		"It's enough to buy a cup of Coffee!",
+		"Wow! You're the lucky one.",
+		"Amazing! You're done well.",
+		"OMG! You're so lucky. Congratulation!",
+	];
+
+	const rand = Math.floor(Math.random() * 5);
+	const moneyEle = document.querySelector('.money');
+	const noticeEle = document.querySelector('.notice');
+	moneyEle.innerHTML = MONEY_LIST[rand] + 'k';
+	noticeEle.innerHTML = NOTICE_LIST[rand];
+
+	localStorage.setItem('cardActive', '1');
+	localStorage.setItem('money', JSON.stringify(MONEY_LIST[rand]));
+	localStorage.setItem('notice', NOTICE_LIST[rand]);
 };
-getButton.onmouseup = removeHold;
-getButton.onmouseout = removeHold;
+
+if (cardActiveLocal) {
+	luckyCardSection.classList.add('getCard');
+} else {
+	getButton.onmousedown = () => {
+		$('.lucky-card').classList.add('hold');
+		interval = setInterval(() => {
+			circle.style.strokeDashoffset =
+				circleLth - (cdCnt / cdTime) * circleLth;
+			if (cdCnt === cdTime) cardHandle();
+			cdCnt += cdIntervalTime / (cdTime * 100);
+		}, cdIntervalTime);
+	};
+	getButton.onmouseup = removeHold;
+	getButton.onmouseout = removeHold;
+}
+
 // Get Lucky Card Handle -->

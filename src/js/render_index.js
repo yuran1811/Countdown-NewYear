@@ -96,16 +96,32 @@ APP_MENU.innerHTML = MENU_ELE.map(
 const headCard = `./src/img/Card/head.png`;
 const tailCard = `./src/img/Card/tail.png`;
 const luckyCardSection = $('.lucky-card');
+
+const moneyLocal = JSON.parse(localStorage.getItem('money')) || 0;
+const noticeLocal = localStorage.getItem('notice') || 0;
+const cardActiveLocal = JSON.parse(localStorage.getItem('cardActive')) || 0;
+
 luckyCardSection.innerHTML += `
-	<div class="card">
-		<div class="head" style="
-			background-image: url('${headCard}')
-		"></div>
-		<div class="mid"></div>
-		<div class="tail" style="
-			background-image: url('${tailCard}')
-		"></div>
+	<div class="card ${cardActiveLocal ? 'active' : ''}">
+		<div class="part mid flip-card">
+			<div class="part head" style="
+				background-image: url('${headCard}')">
+			</div>
+
+			<div class="flip-card-inner">
+				<div class="flip-card-front"></div>
+				<div class="flip-card-back">
+					<span class="money">${moneyLocal}</span>
+					<p class="notice">${noticeLocal}</p>
+				</div>
+			</div>
+
+			<div class="part tail" style="
+				background-image: url('${tailCard}')">
+			</div>
+		</div>
 	</div>
+
 	<div class="heading">
 		<p>
 			You have 1 chance to get

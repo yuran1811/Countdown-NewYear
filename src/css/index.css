@@ -38,23 +38,23 @@ a {
 
 	outline: 0;
 	opacity: 0;
+	padding: 0.5rem;
 	margin: 75px 0 -55px 0;
 	transform: translateY(10px);
 	animation: hide 0.3s forwards ease;
-	transition: transform 0.3s ease, opacity 0.3s ease;
+	transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease,
+		color 0.3s ease;
 }
 li {
-	position: relative;
 	width: 30rem;
 	margin-left: auto;
 	margin-right: auto;
+	position: relative;
 }
 li a {
 	width: 100%;
 }
-li:hover,
-a:focus {
-	display: block;
+li:hover {
 	color: #b29259;
 	background-color: #ffeea8;
 }
@@ -206,28 +206,88 @@ section.page.active {
 	text-align: center;
 }
 
-.lucky-card .card {
-	display: none;
+.flip-card {
+	background-color: transparent;
+	border: 1px solid #f1f1f1;
+	perspective: 1400px;
+}
+.flip-card-inner {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	text-align: center;
+	transition: transform 0.5s;
+	transform-style: preserve-3d;
+}
+.flip-card-front,
+.flip-card-back {
+	backface-visibility: hidden;
 	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+.flip-card-front {
+	color: #ffedb1;
+	background-color: #722925;
+}
+.flip-card-back {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	background-color: #722925;
+	transform: rotateY(-180deg);
+	text-align: center;
+	color: #ffedb1;
+}
+.flip-card-back .money {
+	font-size: 8rem;
+	margin-bottom: 1rem;
+}
+.flip-card-back .notice {
+	font-size: 3rem;
+}
+
+.lucky-card .card {
+	position: absolute;
+	display: none;
 	inset: 0;
 }
-.lucky-card .card > * {
+.lucky-card .card .part {
 	background-repeat: no-repeat;
 	background-size: 200px 440px;
 	position: absolute;
 	height: 440px;
 	width: 200px;
+	border: none;
+	left: 50%;
 	top: 50%;
-	left: 53%;
 	transform: translate(-50%, -50%);
 }
-.lucky-card .card.active > .head {
-	left: 10%;
+
+.flip-card .head {
+	z-index: 10;
+	transition: all 0.5s ease-out;
+}
+.flip-card .flip-card-inner {
+	z-index: 9;
+	transition: all 0.55s linear;
+}
+.flip-card .tail {
+	z-index: 8;
+	transition: all 0.5s ease-out;
+}
+
+.flip-card:hover .head {
+	left: -200px;
 	transform: translateY(-50%);
 }
-.lucky-card .card.active > .tail {
+.flip-card:hover .flip-card-inner {
+	transform: rotateY(-180deg);
+}
+.flip-card:hover .tail {
 	left: unset;
-	right: 10%;
+	right: -200px;
 	transform: translateY(-50%);
 }
 
