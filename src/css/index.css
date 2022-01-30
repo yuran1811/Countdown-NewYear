@@ -187,6 +187,7 @@ section.page.active {
 	display: block;
 }
 
+/* === Home Page === */
 .home {
 	height: 100%;
 	width: 100%;
@@ -214,6 +215,7 @@ section.page.active {
 	transform: scaleX(1);
 }
 
+/* === Lucky Card Page === */
 .lucky-card {
 	width: 100%;
 	height: 100vh;
@@ -391,6 +393,51 @@ section.page.active {
 }
 .lucky-card.getCard .heading {
 	display: none;
+}
+
+/* === About Page === */
+.about .container {
+	width: 50%;
+	margin: auto;
+	padding: 2rem;
+	display: flex;
+	position: relative;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+.about .container .heading {
+	font-size: 5vmax;
+	padding: 7rem 0 3rem;
+	color: #b29259;
+	position: relative;
+	text-align: center;
+}
+.about .container .heading::after {
+	position: absolute;
+	content: '';
+	left: 0;
+	right: 0;
+	bottom: 2rem;
+	height: 1rem;
+	background-color: #b29259;
+}
+.about .container .desc {
+	margin: 2rem auto;
+	font-size: 3rem;
+	text-indent: 8%;
+	color: black;
+}
+.about .container .desc:last-child {
+	width: 100%;
+	text-indent: 0%;
+	text-align: center;
+}
+.about .container .gh-link {
+	all: unset;
+	cursor: pointer;
+	color: #b29259;
+	text-decoration: underline;
 }
 /* Section --> */
 
