@@ -159,12 +159,12 @@ aboutSection.innerHTML = `
 	<div class="container">
 		<div class="heading">About</div>
 		<p class="desc">
-			Because of bringing memorable memories to people during Tet Holiday, I decided to create this site.
+			For bringing memorable memories to people during Tet Holiday, I decided to create this site.
 		</p>
 		<p class="desc">
-			If you love this projects, give me 1 star on
+			If you love this project, give me 1 star on
 			<a class="gh-link" href="https://github.com/yuran1811/Countdown-NewYear" target="_blank" rel="noopener">Github</a>
-			and share this to others.
+			and share it to others.
 		</p>
 		<p class="desc">Thanks a lot!</p>
 	</div>
