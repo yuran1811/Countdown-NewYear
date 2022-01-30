@@ -5,7 +5,6 @@ const parallaxBox = $('#box');
 document.body.addEventListener('mousemove', parallax, false);
 document.body.addEventListener('touchstart', parallax, false);
 document.body.addEventListener('touchmove', parallax, false);
-// Parallax on Move -->
 
 function parallax(event) {
 	const layers = $$('.layer');
@@ -26,6 +25,7 @@ function parallax(event) {
 		layer.style.transform = `translate(${x}px, ${y}px)`;
 	});
 }
+// Parallax on Move -->
 
 // <-- BGM Play Handle
 const playBtn = $('.bgm');
@@ -114,5 +114,17 @@ if (cardActiveLocal) {
 	getButton.onmouseup = removeHold;
 	getButton.onmouseout = removeHold;
 }
-
 // Get Lucky Card Handle -->
+
+// <-- Start UI Handle
+const bgm = $('.bgm');
+const audio = $('.bgm audio');
+const overlay = $('.overlay');
+const startBtn = $('.start-btn');
+startBtn.onclick = () => {
+	audio.play();
+	bgm.classList.add('active');
+	overlay.classList.add('hide');
+	setTimeout(() => (overlay.style.display = 'none'), 300);
+};
+// Start UI Handle -->
