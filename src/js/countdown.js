@@ -40,8 +40,7 @@ const COUNT_DOWN = {
 		const loading = document.getElementById('loading');
 
 		const currentYear = new Date().getFullYear();
-		const newYearTime = new Date(`January 30 ${currentYear} 09:17:30`);
-		// const newYearTime = new Date(`February 1 ${currentYear} 00:00:00`);
+		const newYearTime = new Date(`February 1 ${currentYear} 00:00:00`);
 
 		year.innerText = currentYear;
 

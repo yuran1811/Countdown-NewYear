@@ -1,8 +1,11 @@
-// Parallax on Move
+$('.home').classList.add('active');
+
+// <-- Parallax on Move
 const parallaxBox = $('#box');
 document.body.addEventListener('mousemove', parallax, false);
 document.body.addEventListener('touchstart', parallax, false);
 document.body.addEventListener('touchmove', parallax, false);
+// Parallax on Move -->
 
 function parallax(event) {
 	const layers = $$('.layer');
@@ -24,7 +27,7 @@ function parallax(event) {
 	});
 }
 
-// Event Handle
+// <-- BGM Play Handle
 const playBtn = $('.bgm');
 playBtn.onclick = () => {
 	playBtn.classList.toggle('active');
@@ -32,9 +35,9 @@ playBtn.onclick = () => {
 		playBtn.querySelector('audio').play();
 	else playBtn.querySelector('audio').pause();
 };
+// BGM Play Handle -->
 
-$('.home').classList.add('active');
-
+// <-- Tab Link Handle
 const links = $$('#menu li');
 links.forEach((item) => {
 	item.onclick = (e) => {
@@ -50,3 +53,40 @@ links.forEach((item) => {
 		$(`section[class~='${index}']`)?.classList.add('active');
 	};
 });
+// Tab Link Handle -->
+
+// <-- Get Lucky Card Handle
+const cardUI = $('.card');
+const getButton = $('.get-card');
+const circle = getButton.querySelector('.progress-circle');
+// const circleLth = circle.getTotalLength();
+const circleLth = 570;
+
+const cdIntervalTime = 250;
+const cdTime = 5;
+let cdCnt = 0;
+let interval;
+
+const removeHold = () => {
+	$('.lucky-card').classList.remove('hold');
+	clearInterval(interval);
+	circle.style.strokeDashoffset = circleLth;
+	cdCnt = 0;
+};
+
+getButton.onmousedown = () => {
+	$('.lucky-card').classList.add('hold');
+	interval = setInterval(() => {
+		circle.style.strokeDashoffset =
+			circleLth - (cdCnt / cdTime) * circleLth;
+		if (cdCnt === cdTime) {
+			clearInterval(interval);
+			setTimeout(() => $('.lucky-card').classList.add('getCard'), 250);
+			setTimeout(() => cardUI.classList.add('active'), 500);
+		}
+		cdCnt += cdIntervalTime / (cdTime * 100);
+	}, cdIntervalTime);
+};
+getButton.onmouseup = removeHold;
+getButton.onmouseout = removeHold;
+// Get Lucky Card Handle -->

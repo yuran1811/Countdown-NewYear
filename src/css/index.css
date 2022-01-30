@@ -78,6 +78,19 @@ h4 {
 	font-weight: lighter;
 }
 
+#menu {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 11rem;
+	height: 11rem;
+	background-color: #b29259;
+	border-bottom-right-radius: 100%;
+	box-shadow: 0 2px 5px #dabb80;
+	animation: not-checked 0.2s both;
+	transition: 0.2s;
+	z-index: 9;
+}
 #trigger,
 #burger,
 #burger:before,
@@ -126,20 +139,6 @@ h4 {
 	transform: rotate(-45deg) translateX(-5px);
 	transition: transform 0.2s ease;
 }
-
-#menu {
-	position: absolute;
-	margin: 0;
-	padding: 0;
-	width: 11rem;
-	height: 11rem;
-	background-color: #b29259;
-	border-bottom-right-radius: 100%;
-	box-shadow: 0 2px 5px #dabb80;
-	animation: not-checked 0.2s both;
-	transition: 0.2s;
-	z-index: 9;
-}
 #menu-toggle:checked + #trigger + #burger + #menu {
 	animation: checked 0.45s ease both;
 }
@@ -152,12 +151,163 @@ a {
 	display: none;
 }
 
-.home {
+/* <-- Section */
+section.page {
 	position: relative;
+	display: none;
+}
+section.page.active {
+	display: block;
+}
+
+.home {
 	height: 100%;
 	width: 100%;
 }
+.home .heading {
+	position: absolute;
+	color: #caa860;
+	font-size: 6vmax;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.home .heading::after {
+	position: absolute;
+	content: '';
+	bottom: -1.5rem;
+	left: 0;
+	right: 0;
+	height: 1rem;
+	background-color: #caa860;
+	transform: scaleX(0);
+	transition: all 0.3s ease;
+}
+.home .heading:hover::after {
+	transform: scaleX(1);
+}
 
+.lucky-card {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+.lucky-card * {
+	opacity: 1;
+	visibility: visible;
+	transition: all 0.3s ease;
+}
+.lucky-card p.desc {
+	font-size: 3rem;
+	text-align: center;
+}
+
+.lucky-card .card {
+	display: none;
+	position: absolute;
+	inset: 0;
+}
+.lucky-card .card > * {
+	background-repeat: no-repeat;
+	background-size: 200px 440px;
+	position: absolute;
+	height: 440px;
+	width: 200px;
+	top: 50%;
+	left: 53%;
+	transform: translate(-50%, -50%);
+}
+.lucky-card .card.active > .head {
+	left: 10%;
+	transform: translateY(-50%);
+}
+.lucky-card .card.active > .tail {
+	left: unset;
+	right: 10%;
+	transform: translateY(-50%);
+}
+
+.lucky-card .heading {
+	position: absolute;
+	font-size: 4rem;
+	color: #caa860;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.lucky-card .heading > p > span {
+	font-size: 6rem;
+	display: block;
+}
+
+.lucky-card .progress {
+	position: absolute;
+	top: 52%;
+	left: 50%;
+	opacity: 0;
+	transform: translate(-50%, -50%);
+}
+.lucky-card button {
+	position: relative;
+	cursor: pointer;
+	font-size: 3rem;
+	display: block;
+	padding: 2rem;
+	outline: none;
+	color: white;
+	margin: 2rem auto;
+	border-radius: 50%;
+	background: #b29259;
+	transition: all 0.25s ease;
+	border: 1rem solid transparent;
+}
+.lucky-card button:active {
+	color: #b29259;
+	background-color: #ffedb1;
+	border-color: #b29259;
+}
+
+.lucky-card.hold p {
+	opacity: 0;
+	visibility: hidden;
+}
+.lucky-card.hold .progress {
+	top: 50%;
+	opacity: 1;
+}
+.lucky-card.hold .progress-circle {
+	stroke-dasharray: 570;
+	stroke-dashoffset: 570;
+}
+.lucky-card.hold button {
+	padding: 4rem;
+	font-size: 5rem;
+}
+.lucky-card.hold button::before {
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+	background-color: #d1b475;
+	animation: fade 0.75s infinite linear forwards;
+}
+
+.lucky-card.getCard .card {
+	display: flex;
+}
+.lucky-card.getCard .heading {
+	display: none;
+}
+/* Section --> */
+
+/* <-- Parallax BG */
 #box {
 	background-color: #f7f0e9;
 	position: relative;
@@ -220,35 +370,9 @@ a {
 	height: 55%;
 	background-position: bottom left;
 }
+/* Parallax BG --> */
 
-.home .heading {
-	position: absolute;
-	color: #caa860;
-	font-size: 6vmax;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-.home .heading::after {
-	position: absolute;
-	content: '';
-	bottom: -1.5rem;
-	left: 0;
-	right: 0;
-	height: 1rem;
-	background-color: #caa860;
-	transform: scaleX(0);
-	transition: all 0.3s ease;
-}
-.home .heading:hover::after {
-	transform: scaleX(1);
-}
-
-.lucky-card .heading {
-	font-size: 4rem;
-	color: #caa860;
-}
-
+/* <-- Icon */
 .social {
 	position: absolute;
 	bottom: 25%;
@@ -296,12 +420,14 @@ a {
 .bgm .pause {
 	opacity: 0;
 }
+/* Icon --> */
 
-section.page {
-	display: none;
-}
-section.page.active {
-	display: block;
+/* <-- Animation */
+@keyframes fade {
+	to {
+		transform: scale(2);
+		opacity: 0;
+	}
 }
 
 @keyframes appear {
@@ -344,3 +470,4 @@ section.page.active {
 		height: 300rem;
 	}
 }
+/* Animation --> */

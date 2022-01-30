@@ -93,14 +93,35 @@ APP_MENU.innerHTML = MENU_ELE.map(
 ).join('');
 
 // Render Lucky Card UI
+const headCard = `./src/img/Card/head.png`;
+const tailCard = `./src/img/Card/tail.png`;
 const luckyCardSection = $('.lucky-card');
-luckyCardSection.innerHTML = `
+luckyCardSection.innerHTML += `
 	<div class="card">
-		<div class="">
-		</div>
+		<div class="head" style="
+			background-image: url('${headCard}')
+		"></div>
+		<div class="mid"></div>
+		<div class="tail" style="
+			background-image: url('${tailCard}')
+		"></div>
 	</div>
 	<div class="heading">
-		You have 1 chance to get Lucky Card !
-		<button class="get-card">Get</button>
-	</div>
-`;
+		<p>
+			You have 1 chance to get
+			<span class="highlight">Lucky Card !</span>
+		</p>
+		<button class="get-card">
+			<svg class="progress" width="190" height="190">
+				<circle
+					class="progress-circle"
+					cx="95" cy="95" r="90"
+					fill="transparent"
+					stroke-width="5"
+					stroke="#b29259"
+				/>
+			</svg>
+			Get
+		</button>
+		<p class="desc">Click and hold the Get Button</p>
+	</div>`;
