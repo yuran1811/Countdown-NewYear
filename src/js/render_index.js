@@ -1,3 +1,6 @@
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
+
 const APP = document.querySelector('#app');
 const APP_MENU = APP.querySelector('#menu');
 const APP_BOX = APP.querySelector('#box');
@@ -53,26 +56,51 @@ APP_BOX.innerHTML = CLOUD_ELE.map(
 // Render Menu List
 const MENU_ELE = [
 	{
+		name: 'Home',
+		href: '',
+		newTab: 0,
+	},
+	{
 		name: 'Count Down',
 		href: './countdown.html',
 		newTab: 1,
 	},
 	{
 		name: 'Lucky Card',
-		href: '#',
+		href: '',
 		newTab: 0,
 	},
 	{
 		name: 'About',
-		href: '#',
+		href: '',
 		newTab: 0,
 	},
 ];
 APP_MENU.innerHTML = MENU_ELE.map(
-	(item) => `
-		<li>
-			<a href="${item.href}" ${item.newTab && 'target="_blank" rel="noopener"'}>
+	(item, index) => `
+		<li
+			data-direct="${item.newTab}"
+			data-link="${item.name.toLowerCase().split(' ').join('-')}"
+			style="--t: 0.${index + 3}s;"
+		>
+			<a
+				href="${item.href || '#'}"
+				${item.newTab ? 'target="_blank" rel="noopener"' : ''}
+			>
 				${item.name}
 			</a>
 		</li>`
 ).join('');
+
+// Render Lucky Card UI
+const luckyCardSection = $('.lucky-card');
+luckyCardSection.innerHTML = `
+	<div class="card">
+		<div class="">
+		</div>
+	</div>
+	<div class="heading">
+		You have 1 chance to get Lucky Card !
+		<button class="get-card">Get</button>
+	</div>
+`;

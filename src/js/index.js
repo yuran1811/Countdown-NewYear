@@ -1,6 +1,3 @@
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
-
 // Parallax on Move
 const parallaxBox = $('#box');
 document.body.addEventListener('mousemove', parallax, false);
@@ -35,3 +32,21 @@ playBtn.onclick = () => {
 		playBtn.querySelector('audio').play();
 	else playBtn.querySelector('audio').pause();
 };
+
+$('.home').classList.add('active');
+
+const links = $$('#menu li');
+links.forEach((item) => {
+	item.onclick = (e) => {
+		if (item.dataset.direct == 1) return;
+
+		e.preventDefault();
+		$('#menu-toggle').checked = false;
+
+		const lastActive = $('section.page.active');
+		if (lastActive) lastActive.classList.remove('active');
+
+		const index = item.dataset.link;
+		$(`section[class~='${index}']`)?.classList.add('active');
+	};
+});

@@ -10,11 +10,6 @@ function randomColor(colors) {
 	return colors[Math.floor(Math.random() * colors.length)];
 }
 
-const mouse = {
-	x: window.innerWidth / 2,
-	y: window.innerHeight / 2,
-};
-
 function Particle(x, y, radius, color, velocity) {
 	this.x = x;
 	this.y = y;
@@ -39,7 +34,12 @@ function Particle(x, y, radius, color, velocity) {
 		this.ttl--;
 	};
 }
-// const partcile = new Particle(100, 100, 10, "red");
+
+const mouse = {
+	x: window.innerWidth / 2,
+	y: window.innerHeight / 2,
+};
+
 let particles;
 const partcilesCount = 30;
 function init() {
@@ -80,15 +80,12 @@ function animate() {
 		}
 		item.update();
 	});
-	// partcile.update();
 }
+
 init();
 animate();
 generateCircles();
-// arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise?: boolean):
 
-// partcile.draw();
-// console.log("partcile", partcile);
 window.addEventListener('mousemove', function (event) {
 	mouse.x = event.clientX;
 	mouse.y = event.clientY;
