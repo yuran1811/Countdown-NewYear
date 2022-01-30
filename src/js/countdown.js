@@ -39,20 +39,13 @@ const COUNT_DOWN = {
 		const year = document.getElementById('year');
 		const loading = document.getElementById('loading');
 
-		let updateCD;
-
 		const currentYear = new Date().getFullYear();
-		const newYearTime = new Date(`February 1 ${currentYear} 00:00:00`);
+		const newYearTime = new Date(`January 30 ${currentYear} 09:17:30`);
+		// const newYearTime = new Date(`February 1 ${currentYear} 00:00:00`);
 
 		year.innerText = currentYear;
 
-		function lastCountDown() {
-			[days, hours, minutes].forEach(
-				(item) => (item.style.display = 'none')
-			);
-		}
-
-		function updateCountdown() {
+		const updateCountdown = () => {
 			const currentTime = new Date();
 			const diff = newYearTime - currentTime;
 
@@ -64,26 +57,44 @@ const COUNT_DOWN = {
 			days.innerHTML = d;
 			hours.innerHTML = h < 10 ? '0' + h : h;
 			minutes.innerHTML = m < 10 ? '0' + m : m;
+			seconds.innerHTML = s < 10 ? '0' + s : s;
 
 			if (!d && !h && !m) {
-				lastCountDown(days, hours, minutes);
+				this.ELE.classList.add('last-cd');
 				if (!s) {
+					seconds.closest('.time').querySelector('small').innerHTML =
+						'Happy New Year !';
 					clearInterval(updateCD);
 					setTimeout(() => {
 						window.location.href = './firework.html';
-					}, 1000);
+					}, 1500);
+					return;
+				} else {
+					seconds.innerHTML = s + ' s';
+					seconds.closest('.time').querySelector('small').innerHTML =
+						'left';
 				}
 			}
+			if (d <= 0 && h <= 0 && m <= 0 && s <= 0) {
+				clearInterval(updateCD);
+				days.innerHTML = '0';
+				hours.innerHTML = '0';
+				minutes.innerHTML = '0';
+				seconds.innerHTML = '0';
 
-			seconds.innerHTML = s < 10 ? '0' + s : s;
-		}
+				this.ELE.classList.add('new-year');
+				document.querySelector(`#${this.ELE.id} > h1`).innerHTML =
+					'Happy New Year !';
+				return;
+			}
+		};
 
 		setTimeout(() => {
 			loading?.remove();
 			countdown.style.display = 'flex';
 		}, 1000);
 
-		updateCD = setInterval(updateCountdown, 1000);
+		let updateCD = setInterval(updateCountdown, 1000);
 	},
 
 	run() {
