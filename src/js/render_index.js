@@ -91,6 +91,17 @@ APP_MENU.innerHTML = MENU_ELE.map(
 			</a>
 		</li>`
 ).join('');
+APP_MENU.innerHTML += `
+	<div class="cloud cloud1"
+		style="
+			background-image: url('./src/img/CloudPattern/1.png')
+		">
+	</div>
+	<div class="cloud cloud2"
+		style="
+			background-image: url('./src/img/CloudPattern/2.png')
+		">
+	</div>`;
 
 // Render Lucky Card UI
 const headCard = `./src/img/Card/head.png`;
@@ -111,7 +122,7 @@ luckyCardSection.innerHTML += `
 			<div class="flip-card-inner">
 				<div class="flip-card-front"></div>
 				<div class="flip-card-back">
-					<span class="money">${moneyLocal}</span>
+					<span class="money">${moneyLocal}k</span>
 					<p class="notice">${noticeLocal}</p>
 				</div>
 			</div>

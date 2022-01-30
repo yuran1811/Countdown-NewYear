@@ -146,9 +146,36 @@ h4 {
 a {
 	animation: appear 0.2s forwards ease var(--t);
 }
+
 [type='checkbox']:not(:checked),
 [type='checkbox']:checked {
 	display: none;
+}
+
+.cloud {
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	transition: all 0.4s ease;
+	display: inline;
+	position: fixed;
+	height: 20rem;
+	width: 30rem;
+	z-index: 20;
+}
+.cloud1 {
+	transform: translate(-180%, -180%);
+	width: 42rem;
+	bottom: 6rem;
+	left: 15rem;
+}
+.cloud2 {
+	transform: translate(180%, 180%);
+	right: 17rem;
+	top: 5rem;
+}
+
+#menu-toggle:checked + #trigger + #burger + #menu > .cloud {
+	transform: translate(0%, 0%);
 }
 
 /* <-- Section */
