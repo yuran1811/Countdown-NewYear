@@ -665,3 +665,8 @@ section.page.active {
 		padding-top: 2rem;
 	}
 }
+@media (max-width: 500px) {
+	.about .container {
+		width: 70%;
+	}
+}
