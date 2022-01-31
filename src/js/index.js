@@ -1,10 +1,11 @@
-$('.home').classList.add('active');
-
 // <-- Parallax on Move
+const homePage = $('.home');
 const parallaxBox = $('#box');
-document.body.addEventListener('mousemove', parallax, false);
-document.body.addEventListener('touchstart', parallax, false);
-document.body.addEventListener('touchmove', parallax, false);
+
+homePage.classList.add('active');
+homePage.addEventListener('mousemove', parallax, false);
+homePage.addEventListener('touchstart', parallax, false);
+homePage.addEventListener('touchmove', parallax, false);
 
 function parallax(event) {
 	const layers = $$('.layer');
@@ -113,6 +114,10 @@ if (cardActiveLocal) {
 	};
 	getButton.onmouseup = removeHold;
 	getButton.onmouseout = removeHold;
+
+	getButton.addEventListener('touchstart', getButton.onmousedown);
+	getButton.addEventListener('touchend', removeHold);
+	getButton.addEventListener('touchcancel', removeHold);
 }
 // Get Lucky Card Handle -->
 
