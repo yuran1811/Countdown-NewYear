@@ -28,16 +28,6 @@ function parallax(event) {
 }
 // Parallax on Move -->
 
-// <-- BGM Play Handle
-const playBtn = $('.bgm');
-playBtn.onclick = () => {
-	playBtn.classList.toggle('active');
-	if (playBtn.className.includes('active'))
-		playBtn.querySelector('audio').play();
-	else playBtn.querySelector('audio').pause();
-};
-// BGM Play Handle -->
-
 // <-- Tab Link Handle
 const links = $$('#menu li');
 links.forEach((item) => {
@@ -133,3 +123,11 @@ startBtn.onclick = () => {
 	setTimeout(() => (overlay.style.display = 'none'), 300);
 };
 // Start UI Handle -->
+
+// <-- BGM Play Handle
+bgm.onclick = () => {
+	bgm.classList.toggle('active');
+	if (bgm.className.includes('active')) audio.play();
+	else audio.pause();
+};
+// BGM Play Handle -->

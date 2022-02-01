@@ -12,6 +12,8 @@ const COUNT_DOWN = {
 			<div id="year" class="year"></div>
 			<h1>New Year Countdown</h1>
 
+			<button style="display: none">Watch Fireworks</button>
+
 			<div id="countdown" class="countdown">
 				${this.TIME_ELE.map(
 					(item) => `
@@ -22,12 +24,7 @@ const COUNT_DOWN = {
 				).join('')}
 			</div>
 			
-			<img
-				src="${SPINNER_SRC}"
-				alt="Loading..."
-				id="loading"
-				class="loading"
-			/>`;
+			<img src="${SPINNER_SRC}" alt="Loading..." id="loading" class="loading"/>`;
 	},
 
 	handle() {
@@ -38,11 +35,16 @@ const COUNT_DOWN = {
 		const countdown = document.getElementById('countdown');
 		const year = document.getElementById('year');
 		const loading = document.getElementById('loading');
+		const buttonFW = this.ELE.querySelector('button');
 
-		const currentYear = new Date().getFullYear();
-		const newYearTime = new Date(`February 1 ${currentYear} 00:00:00`);
+		const currentYear = 2023;
+		const newYearTime = new Date(`January 22 ${currentYear} 00:00:00`);
 
 		year.innerText = currentYear;
+
+		const fireworkDisplay = () => {
+			window.location.href = './firework.html';
+		};
 
 		const updateCountdown = () => {
 			const currentTime = new Date();
@@ -63,10 +65,10 @@ const COUNT_DOWN = {
 				if (!s) {
 					seconds.closest('.time').querySelector('small').innerHTML =
 						'Happy New Year !';
+					buttonFW.style.display = 'block';
+
 					clearInterval(updateCD);
-					setTimeout(() => {
-						window.location.href = './firework.html';
-					}, 1500);
+					setTimeout(fireworkDisplay, 1500);
 					return;
 				} else {
 					seconds.innerHTML = s + ' s';
@@ -84,16 +86,18 @@ const COUNT_DOWN = {
 				this.ELE.classList.add('new-year');
 				document.querySelector(`#${this.ELE.id} > h1`).innerHTML =
 					'Happy New Year !';
+				buttonFW.style.display = 'block';
 				return;
 			}
 		};
+		let updateCD = setInterval(updateCountdown, 1000);
 
 		setTimeout(() => {
 			loading?.remove();
 			countdown.style.display = 'flex';
 		}, 1000);
 
-		let updateCD = setInterval(updateCountdown, 1000);
+		buttonFW.onclick = fireworkDisplay;
 	},
 
 	run() {

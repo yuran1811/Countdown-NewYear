@@ -167,5 +167,4 @@ aboutSection.innerHTML = `
 			and share it to others.
 		</p>
 		<p class="desc">Thanks a lot!</p>
-	</div>
-`;
+	</div>`;
