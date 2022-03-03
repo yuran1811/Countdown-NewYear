@@ -45,12 +45,11 @@ const CLOUD_ELE = [
 	},
 ];
 APP_BOX.innerHTML = CLOUD_ELE.map(
-	(item) =>
-		`<div
-			class="layer ${item.name}"
-			data-speed="${item.speed}"
-			style="background-image: url('${CLOUD_SRC}/${item.name}.${item.ext}')"
-		></div>`
+	(item) => `
+	<div
+		class="layer ${item.name}" data-speed="${item.speed}"
+		style="background-image: url('${CLOUD_SRC}/${item.name}.${item.ext}')">
+	</div>`
 ).join('');
 
 // Render Menu List
@@ -86,22 +85,12 @@ APP_MENU.innerHTML = MENU_ELE.map(
 			<a
 				href="${item.href || '#'}"
 				${item.newTab ? 'target="_blank" rel="noopener"' : ''}
-			>
-				${item.name}
-			</a>
+			>${item.name}</a>
 		</li>`
 ).join('');
 APP_MENU.innerHTML += `
-	<div class="cloud cloud1"
-		style="
-			background-image: url('./src/img/CloudPattern/1.png')
-		">
-	</div>
-	<div class="cloud cloud2"
-		style="
-			background-image: url('./src/img/CloudPattern/2.png')
-		">
-	</div>`;
+	<div class="cloud cloud1" style="background-image: url('./src/img/CloudPattern/1.png')"></div>
+	<div class="cloud cloud2" style="background-image: url('./src/img/CloudPattern/2.png')"></div>`;
 
 // Render Lucky Card UI
 const headCard = `./src/img/Card/head.png`;
@@ -115,10 +104,7 @@ const cardActiveLocal = JSON.parse(localStorage.getItem('cardActive')) || 0;
 luckyCardSection.innerHTML += `
 	<div class="card ${cardActiveLocal ? 'active' : ''}">
 		<div class="part mid flip-card">
-			<div class="part head" style="
-				background-image: url('${headCard}')">
-			</div>
-
+			<div class="part head" style="background-image: url('${headCard}')"></div>
 			<div class="flip-card-inner">
 				<div class="flip-card-front"></div>
 				<div class="flip-card-back">
@@ -126,10 +112,7 @@ luckyCardSection.innerHTML += `
 					<p class="notice">${noticeLocal}</p>
 				</div>
 			</div>
-
-			<div class="part tail" style="
-				background-image: url('${tailCard}')">
-			</div>
+			<div class="part tail" style="background-image: url('${tailCard}')"></div>
 		</div>
 	</div>
 
