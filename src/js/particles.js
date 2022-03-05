@@ -86,7 +86,13 @@ init();
 animate();
 generateCircles();
 
-window.addEventListener('mousemove', (e) => {
+onmousemove = (e) => {
 	mouse.x = e.clientX;
 	mouse.y = e.clientY;
-});
+};
+onresize = () => {
+	ctx.save();
+	canvas.width = innerWidth;
+	canvas.height = innerHeight;
+	ctx.restore();
+};
