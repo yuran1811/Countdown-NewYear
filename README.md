@@ -1,3 +1,10 @@
-# Countdown New Year
+### 2023 - Cat
 
-## Having fun during Tet Holiday with this site ~
+### Idea: BongoCat (Logo, Character, Music)
+
+### Todo:
+
+-   [ ] Change countdown page's background to BongoCat
+-   [ ] New UI for fireworks page
+-   [ ] Downloads BongoCat musics
+-   [ ] Cat models use ThreeJS
