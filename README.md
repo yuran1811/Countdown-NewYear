@@ -1,3 +1,3 @@
-# Countdown-NewYear
+# Countdown New Year
 
-## Having Fun during Tet Holiday with this site ~
+## Having fun during Tet Holiday with this site ~
